@@ -8,3 +8,8 @@ export interface INewUser {
 export interface IUser extends INewUser {
   id: number;
 }
+
+export interface ILogin {
+  username: string;
+  password: string;
+}

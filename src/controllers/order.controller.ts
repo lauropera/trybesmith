@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { OrderService } from '../services';
-import statusCodes from '../utils/statusCodes';
+import { statusCodes } from '../utils/statusCodes';
 
 export default class OrderController {
   public orderService = new OrderService();
