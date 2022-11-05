@@ -2,7 +2,7 @@ import { UserModel } from '../models';
 import { INewUser, ILogin, IUser } from '../interfaces/IUser';
 import TokenUtils from '../utils/tokenUtils';
 import validator from '../utils/validations/validator';
-import { loginSchema } from '../utils/validations/schema';
+import { loginSchema, newUserSchema } from '../utils/validations/schema';
 import HttpException from '../utils/http.exception';
 
 export default class UserService {
@@ -21,6 +21,7 @@ export default class UserService {
   }
 
   public async create(userData: INewUser): Promise<string> {
+    await validator(newUserSchema, userData);
     const user = await this.model.create(userData);
     const token = this.tokenService.generateToken(user);
     return token;
