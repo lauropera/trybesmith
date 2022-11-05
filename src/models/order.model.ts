@@ -1,4 +1,4 @@
-import { RowDataPacket } from 'mysql2';
+import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import { IOrder } from '../interfaces/IOrder';
 import mysql from './connection';
 
@@ -15,5 +15,13 @@ export default class OrderModel {
       GROUP BY o.id;`,
     );
     return rows;
+  }
+
+  async create(userId: number) {
+    const [{ insertId }] = await this.connection.execute<ResultSetHeader>(
+      'INSERT INTO Trybesmith.Orders (userId) VALUES (?)',
+      [userId],
+    );
+    return insertId;
   }
 }
