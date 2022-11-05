@@ -22,7 +22,7 @@ export default class UserService {
 
   public async create(userData: INewUser): Promise<string> {
     await validator(newUserSchema, userData);
-    const user = await this.model.create(userData);
+    const user: IUser = await this.model.create(userData);
     const token = this.tokenService.generateToken(user);
     return token;
   }

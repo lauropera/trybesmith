@@ -13,10 +13,10 @@ export default class OrderService {
     return orders;
   }
 
-  async create(userId: number, productsIds: number[]) {
+  async create(userId: number, productsIds: number[]): Promise<IOrder> {
     await validator(newOrderSchema, { productsIds });
 
-    const orderId = await this.model.create(userId);
+    const orderId: number = await this.model.create(userId);
     const insertSaleId = productsIds.map(async (productId) => {
       await this.productModel.insertOrderId(orderId, productId);
     });

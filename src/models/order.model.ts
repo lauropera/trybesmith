@@ -17,7 +17,7 @@ export default class OrderModel {
     return rows;
   }
 
-  async create(userId: number) {
+  async create(userId: number): Promise<number> {
     const [{ insertId }] = await this.connection.execute<ResultSetHeader>(
       'INSERT INTO Trybesmith.Orders (userId) VALUES (?)',
       [userId],
