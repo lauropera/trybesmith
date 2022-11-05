@@ -2,7 +2,7 @@ import { UserModel } from '../models';
 import { INewUser, ILogin, IUser } from '../interfaces/IUser';
 import TokenUtils from '../utils/tokenUtils';
 import validator from '../utils/validations/validator';
-import loginSchema from '../utils/validations/schema';
+import { loginSchema } from '../utils/validations/schema';
 import HttpException from '../utils/http.exception';
 
 export default class UserService {
