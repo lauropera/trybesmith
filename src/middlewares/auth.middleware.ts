@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { IncomingHttpHeaders } from 'http';
-import jwt, { JwtPayload } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import HttpException from '../utils/http.exception';
 
 export default function authMiddleware(
@@ -11,10 +11,7 @@ export default function authMiddleware(
   const { authorization: token } = req.headers as IncomingHttpHeaders;
   if (!token) throw new HttpException(401, 'Token not found');
   try {
-    const decoded: string | JwtPayload = jwt.verify(
-      token,
-      process.env.JWT_SECRET as string,
-    );
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
     req.body.user = decoded;
     next();
   } catch (err) {
