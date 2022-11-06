@@ -6,11 +6,7 @@ const router = Router();
 
 const orderController = new OrderController();
 
-router.get('/orders', orderController.getAll.bind(orderController));
-router.post(
-  '/orders',
-  authMiddleware,
-  orderController.create.bind(orderController),
-);
+router.get('/', orderController.getAll.bind(orderController));
+router.post('/', authMiddleware, orderController.create.bind(orderController));
 
 export default router;
