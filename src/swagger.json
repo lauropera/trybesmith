@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Trybesmith",
-    "description": "Essa API trabalha com vendas de uma loja de um jogo medieval. A autenticação é feita com JWT (Json Web Token). Para acessar as rotas autenticadas, faça login ou crie um novo usuário para receber o token.",
+    "description": "Essa API trabalha com vendas de uma loja de itens medievais. A autenticação é feita com JWT (Json Web Token). Para acessar as rotas autenticadas, faça login ou crie um novo usuário para receber o token.",
     "contact": {
       "email": "lauropereirasr01@gmail.com"
     },
