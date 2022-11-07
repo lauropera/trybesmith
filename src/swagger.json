@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Trybesmith",
-    "description": "",
+    "description": "Essa API trabalha com vendas de uma loja de um jogo medieval. A autenticação é feita com JWT (Json Web Token). Para acessar as rotas autenticadas, faça login ou crie um novo usuário para receber o token.",
     "contact": {
       "email": "lauropereirasr01@gmail.com"
     },
@@ -125,6 +125,51 @@
       }
     },
     "/orders": {
+      "post": {
+        "summary": "Cadastro de pedido",
+        "description": "Essa rota é responsável por cadastrar novos pedidos, recebendo uma lista de ids de produtos.",
+        "tags": ["Orders"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewOrder"
+              },
+              "examples": {
+                "order": {
+                  "value": {
+                    "productsIds": [1, 2]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "401": {
+            "description": "Token inválido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Pedido cadastrado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/NewOrderResponse"
+                }
+              }
+            }
+          }
+        }
+      },
       "get": {
         "summary": "Listar pedidos",
         "description": "Essa rota é responsável por listar todos os pedidos.",
@@ -138,6 +183,94 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/Order"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products": {
+      "post": {
+        "summary": "Cadastro de produtos",
+        "description": "Essa rota é responsável por cadastrar novos produtos, recebendo o nome e seu valor.",
+        "tags": ["Products"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/NewProduct"
+              },
+              "examples": {
+                "order": {
+                  "value": {
+                    "name": "Totoro Mug",
+                    "amount": "5 peças de ouro"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Campos obrigatórios",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Campos inválidos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Campos inválidos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Produto cadastrado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/NewProductResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Listar produtos",
+        "description": "Essa rota é responsável por listar todos os produtos.",
+        "tags": ["Products"],
+        "responses": {
+          "200": {
+            "description": "Produtos listados com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
                   }
                 }
               }
@@ -179,6 +312,7 @@
       },
       "NewUser": {
         "type": "object",
+        "required": ["username", "classe", "level", "password"],
         "properties": {
           "username": {
             "type": "string"
@@ -210,6 +344,82 @@
             }
           }
         }
+      },
+      "NewOrder": {
+        "type": "object",
+        "required": ["productsIds"],
+        "properties": {
+          "productsIds": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "NewOrderResponse": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "number"
+          },
+          "productsIds": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "Product": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "orderId": {
+            "type": "number"
+          }
+        }
+      },
+      "NewProduct": {
+        "type": "object",
+        "required": ["name", "amount"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          }
+        }
+      },
+      "NewProductResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }

@@ -8,9 +8,11 @@ export default function authMiddleware(
   _res: Response,
   next: NextFunction,
 ) {
-  const { authorization: token } = req.headers as IncomingHttpHeaders;
+  let { authorization: token } = req.headers as IncomingHttpHeaders;
   if (!token) throw new HttpException(401, 'Token not found');
+
   try {
+    token = token.substring(7, token.length);
     const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
     req.body.user = decoded;
     next();
