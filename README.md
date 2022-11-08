@@ -8,7 +8,7 @@ Projeto desenvolvido na <a href="https://betrybe.com/" target="_blank">Trybe</a>
 
 Nesse projeto foi desenvolvido uma API RESTful de vendas de uma loja de itens medievais em TypeScript. Onde é possivel realizar as operações básicas que se pode fazer em um determinado banco de dados: Criação, Leitura, Atualização e Exclusão. A autenticação foi feita com Json Web Token.
 
-## 💻 Instalação e execução
+## 🚀 Instalação e execução
 
 <details>
 <summary>Instalação e execução com Docker</summary>
