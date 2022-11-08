@@ -36,15 +36,15 @@ Conecte ao servidor MySQL rodando na porta 3306 usando um cliente MySQL de sua p
 
 Então, no cliente, rode o script que está no arquivo `Trybesmith.sql`.
 
-### 3 - Abra o terminal do container `trybesmith`.
+### 4 - Abra o terminal do container `trybesmith`.
 
     docker exec -it trybesmith bash
 
-### 4 - No terminal do container, instale as dependências com o comando:
+### 5 - No terminal do container, instale as dependências com o comando:
 
     npm install
 
-### 5 - Agora execute a aplicação com o comando:
+### 6 - Agora execute a aplicação com o comando:
 
     npm start
 
