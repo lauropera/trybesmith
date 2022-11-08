@@ -1,6 +1,6 @@
-# 💻 Trybesmith
+# ⚒️ Trybesmith
 
-<!-- ![Preview do Projeto Blogs API](./project-preview.png) -->
+![Preview do Projeto Blogs API](./project-preview.png)
 
 ## 📡 Desenvolvimento
 
@@ -8,7 +8,7 @@ Projeto desenvolvido na <a href="https://betrybe.com/" target="_blank">Trybe</a>
 
 Nesse projeto foi desenvolvido uma API RESTful de vendas de uma loja de itens medievais em TypeScript. Onde é possivel realizar as operações básicas que se pode fazer em um determinado banco de dados: Criação, Leitura, Atualização e Exclusão. A autenticação foi feita com Json Web Token.
 
-## 📚 Documentação
+## 💻 Instalação e execução
 
 <details>
 <summary>Instalação e execução com Docker</summary>
@@ -24,7 +24,17 @@ git clone git@github.com:lauropera/trybesmith.git
 
 ### 2 - Na raíz do projeto, suba os containers `trybesmith` e `trybesmith_db` utilizando o docker-compose.
 
-    docker-compose up -d
+    docker-compose up -d --build
+
+### 3 - Execute o script SQL para criar o banco de dados
+
+Conecte ao servidor MySQL rodando na porta 3306 usando um cliente MySQL de sua preferência. Utilize as seguintes credenciais:
+
+* host: `db`
+* user: `root`
+* password: `password`
+
+Então, no cliente, rode o script que está no arquivo `Trybesmith.sql`.
 
 ### 3 - Abra o terminal do container `trybesmith`.
 
@@ -38,11 +48,13 @@ git clone git@github.com:lauropera/trybesmith.git
 
     npm start
 
-### 6 - Acesse a documentação e faça requisições para o servidor aberto na porta 3000
+</details>
+<br />
+
+## 📚 Documentação
 
 Acesse a rota http://localhost:3000/docs para acessar a documentação e testar a API. Se preferir, utilize um cliente de requisições HTTP de sua preferência (Insomnia, Thunder Client, etc) para fazer as requisições.
 
-</details>
 <br />
 
 ## ⚙️ Tecnologias
