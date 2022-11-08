@@ -50,6 +50,7 @@ Acesse a rota http://localhost:3000/docs para acessar a documentação e testar 
 - TypeScript
 - Node.js
 - Express.js
+- Express Async Errors
 - Json Web Tokens
 - DotEnv
 - Joi
